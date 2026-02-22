@@ -1,0 +1,24 @@
+twitter:
+  enabled: true
+  schedule:
+    # Option 1: Post at specific times each day
+    times: ["09:00", "13:00", "18:00"]
+    # Option 2: Post every N hours (uncomment below, comment out 'times' above)
+    # interval_hours: 4
+    timezone: "America/New_York"
+  # What to do when all tweets have been posted: "loop" or "stop"
+  behavior_on_empty: "loop"
+
+discord:
+  enabled: true
+  schedule:
+    # Option 1: Post at specific times each day
+    times: ["08:00"]
+    # Option 2: Post every N hours (uncomment below, comment out 'times' above)
+    # interval_hours: 24
+    timezone: "America/New_York"
+  # What to do when all reminders have been posted: "loop" or "stop"
+  behavior_on_empty: "loop"
+
+general:
+  log_level: "INFO"  # INFO or DEBUG
