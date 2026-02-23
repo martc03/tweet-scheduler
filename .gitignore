@@ -1,5 +1,7 @@
 .env
 state.json
+tweets.csv
+reminders.csv
 __pycache__/
 *.pyc
 venv/

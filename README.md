@@ -53,7 +53,12 @@ The install script handles everything: Python venv, dependencies, API keys, and 
 
 ### Step 3: Add Your Content
 
-Edit the CSV files with your own content:
+Copy the example CSVs and edit with your own content:
+
+```bash
+cp tweets.csv.example tweets.csv
+cp reminders.csv.example reminders.csv
+```
 
 **tweets.csv** — Content that gets posted to Twitter/X:
 ```csv
@@ -175,6 +180,13 @@ cp .env.example .env
 nano .env
 ```
 
+### "No tweets.csv or reminders.csv found"
+Copy the example files and add your content:
+```bash
+cp tweets.csv.example tweets.csv
+cp reminders.csv.example reminders.csv
+```
+
 ### "Rate limited by Twitter"
 The Free tier allows 1,500 tweets/month (~50/day). If you're posting more than that, reduce the frequency in `config.yaml`.
 
@@ -201,8 +213,10 @@ sudo systemctl restart tweet-scheduler
 | `discord_notifier.py` | Discord webhook logic |
 | `csv_reader.py` | CSV reading + category rotation |
 | `config.yaml` | Schedule and behavior settings |
-| `tweets.csv` | Twitter content (edit this) |
-| `reminders.csv` | Discord content (edit this) |
+| `tweets.csv.example` | Example Twitter content (copy to `tweets.csv`) |
+| `reminders.csv.example` | Example Discord content (copy to `reminders.csv`) |
+| `tweets.csv` | Your Twitter content (not tracked in git) |
+| `reminders.csv` | Your Discord content (not tracked in git) |
 | `.env` | API keys (never commit this) |
 | `state.json` | Post tracking (auto-generated) |
 | `install.sh` | One-command VPS setup |

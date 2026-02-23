@@ -41,12 +41,18 @@ if [ ! -f "$SCRIPT_DIR/.env" ]; then
     echo ""
 
     read -p "Twitter API Key: " TWITTER_API_KEY
-    read -p "Twitter API Secret: " TWITTER_API_SECRET
-    read -p "Twitter Access Token: " TWITTER_ACCESS_TOKEN
-    read -p "Twitter Access Token Secret: " TWITTER_ACCESS_SECRET
+    read -sp "Twitter API Secret: " TWITTER_API_SECRET
     echo ""
-    read -p "Discord Webhook URL: " DISCORD_WEBHOOK_URL
+    read -p "Twitter Access Token: " TWITTER_ACCESS_TOKEN
+    read -sp "Twitter Access Token Secret: " TWITTER_ACCESS_SECRET
+    echo ""
+    echo ""
+    read -sp "Discord Webhook URL: " DISCORD_WEBHOOK_URL
+    echo ""
 
+    # Write .env with restricted permissions (owner read/write only)
+    OLD_UMASK=$(umask)
+    umask 077
     cat > "$SCRIPT_DIR/.env" << EOF
 TWITTER_API_KEY=${TWITTER_API_KEY}
 TWITTER_API_SECRET=${TWITTER_API_SECRET}
@@ -54,9 +60,10 @@ TWITTER_ACCESS_TOKEN=${TWITTER_ACCESS_TOKEN}
 TWITTER_ACCESS_SECRET=${TWITTER_ACCESS_SECRET}
 DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
 EOF
+    umask "$OLD_UMASK"
 
     echo ""
-    echo ".env file created. You can edit it later: nano $SCRIPT_DIR/.env"
+    echo ".env file created (permissions: owner-only). You can edit it later: nano $SCRIPT_DIR/.env"
 else
     echo ".env already exists. Skipping API key setup."
 fi
